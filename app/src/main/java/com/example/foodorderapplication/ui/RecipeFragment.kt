@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.foodorderapplication.R
 import com.example.foodorderapplication.databinding.FragmentRecipeBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RecipeFragment : Fragment() {
 
     lateinit var fragmentRecipeBinding: FragmentRecipeBinding

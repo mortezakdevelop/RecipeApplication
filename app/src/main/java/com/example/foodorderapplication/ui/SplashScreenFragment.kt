@@ -10,9 +10,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.foodorderapplication.R
 import com.example.foodorderapplication.databinding.FragmentSplashScreenBinding
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 
 
+@AndroidEntryPoint
 class SplashScreenFragment : Fragment() {
 
     private lateinit var fragmentSplashScreenBinding: FragmentSplashScreenBinding
