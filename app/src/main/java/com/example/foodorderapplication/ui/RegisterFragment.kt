@@ -9,15 +9,27 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.foodorderapplication.R
 import com.example.foodorderapplication.databinding.FragmentRegisterBinding
+import com.example.foodorderapplication.models.register.BodyRegisterModel
+import com.example.foodorderapplication.utils.Contracts
+import com.example.foodorderapplication.utils.NetworkRequest
+import com.example.foodorderapplication.viewmodel.RegisterViewModel
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class RegisterFragment : Fragment() {
     private lateinit var fragmentRegisterBinding: FragmentRegisterBinding
 
+//    @Inject
+//    lateinit var body: BodyRegisterModel
+
+    private val viewModel: RegisterViewModel by viewModels()
     private var email = ""
 
     override fun onCreateView(
@@ -34,6 +46,25 @@ class RegisterFragment : Fragment() {
         handleErrorChangeListenerEmailEditText()
 
         fragmentRegisterBinding.submitBtn.setOnClickListener {
+            val firstname = fragmentRegisterBinding.nameEdt.text.toString()
+            val lastName = fragmentRegisterBinding.lastNameEdt.text.toString()
+            val username = fragmentRegisterBinding.usernameEdt.text.toString()
+            //Body
+            //body.email = email
+//            body.firstName = firstname
+//            body.lastName = lastName
+//            body.username = username
+
+//                networkChecker.checkNetworkAvailability().collect { state ->
+//                    if (state) {
+//                        //Call api
+                        //viewModel.callRegisterApi(Contracts.MY_API_KEY, body)
+//                    } else {
+//                        root.showSnackBar(getString(R.string.checkConnection))
+//                    }
+
+
+            //}
             checkNullField()
         }
     }
@@ -51,6 +82,8 @@ class RegisterFragment : Fragment() {
         }else if(errorEmail==getString(R.string.emailNotInvalid)){
             Toast.makeText(requireContext(),"input valid email",Toast.LENGTH_SHORT).show()
         }else{
+            //TODO
+            // loadRegisterData()
             findNavController().navigate(R.id.action_registerFragment_to_recipeFragment)
         }
     }
@@ -80,6 +113,28 @@ class RegisterFragment : Fragment() {
                 }
 
             })
+        }
+    }
+
+    private fun loadRegisterData() {
+        viewModel.registerData.observe(viewLifecycleOwner) { response ->
+            when (response) {
+                is NetworkRequest.Loading -> {
+
+                }
+                is NetworkRequest.Success -> {
+                    response.data?.let { data ->
+                        viewModel.saveData(data.username.toString(), data.hash.toString())
+                        findNavController().popBackStack(R.id.registerFragment, true)
+                        findNavController().navigate(R.id.action_registerFragment_to_recipeFragment)
+                    }
+                }
+                is NetworkRequest.Error -> {
+                    Snackbar.make(requireView(),response.message!!,Snackbar.LENGTH_SHORT).show()
+                }
+
+                else -> {}
+            }
         }
     }
 }
