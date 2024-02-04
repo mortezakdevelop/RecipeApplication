@@ -12,7 +12,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class RecipeFragment : Fragment() {
 
-    lateinit var fragmentRecipeBinding: FragmentRecipeBinding
+    private lateinit var fragmentRecipeBinding: FragmentRecipeBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
