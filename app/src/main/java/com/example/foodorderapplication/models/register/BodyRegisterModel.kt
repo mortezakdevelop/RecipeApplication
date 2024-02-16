@@ -3,8 +3,8 @@ package com.example.foodorderapplication.models.register
 import com.google.gson.annotations.SerializedName
 
 data class BodyRegisterModel(
-    //@SerializedName("email")
-    //var email: String? = null, // your user's email
+    @SerializedName("email")
+    var email: String? = null, // your user's email
     @SerializedName("firstName")
     var firstName: String? = null, // your user's first name
     @SerializedName("lastName")

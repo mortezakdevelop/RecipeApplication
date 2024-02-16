@@ -3,12 +3,53 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.RecipeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/userInfoLay"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <!--Avatar-->
+        <ImageView
+            android:id="@+id/avatarImg"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_circle_user"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/jacarta" />
+        <!--User-->
+        <TextView
+            android:id="@+id/usernameTxt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_7sdp"
+            android:textColor="@color/darkGreen"
+            android:textSize="@dimen/_14ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/avatarImg"
+            app:layout_constraintTop_toTopOf="parent" />
+        <!--Info-->
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:text="@string/headerInfo"
+            android:textColor="@color/darkGray"
+            android:textSize="@dimen/_8ssp"
+            app:layout_constraintEnd_toEndOf="@id/usernameTxt"
+            app:layout_constraintStart_toStartOf="@id/usernameTxt"
+            app:layout_constraintTop_toBottomOf="@id/usernameTxt" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

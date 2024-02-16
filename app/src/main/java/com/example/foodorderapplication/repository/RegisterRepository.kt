@@ -11,13 +11,14 @@ import com.example.foodorderapplication.models.register.BodyRegisterModel
 import com.example.foodorderapplication.models.register.RegisterStoredModel
 import com.example.foodorderapplication.source.RemoteDataSource
 import com.example.foodorderapplication.utils.Contracts
+import dagger.hilt.android.scopes.ActivityRetainedScoped
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import java.io.IOException
 import javax.inject.Inject
 
-
+@ActivityRetainedScoped
 class RegisterRepository @Inject constructor(
     private val context: Context,
     private val remote:RemoteDataSource

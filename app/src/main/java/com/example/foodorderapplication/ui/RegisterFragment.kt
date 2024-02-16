@@ -79,11 +79,11 @@ class RegisterFragment : Fragment() {
 
         if (name.isEmpty() || lastname.isEmpty() || username.isEmpty() || email.isEmpty()) {
             Toast.makeText(requireContext(), "please fill all fields", Toast.LENGTH_SHORT).show()
-        }else if(errorEmail==getString(R.string.emailNotInvalid)){
+        }else if(errorEmail==getString(R.string.emailNotValid)){
             Toast.makeText(requireContext(),"input valid email",Toast.LENGTH_SHORT).show()
         }else{
             //TODO
-            // loadRegisterData()
+            //loadRegisterData()
             findNavController().navigate(R.id.action_registerFragment_to_recipeFragment)
         }
     }
@@ -108,7 +108,7 @@ class RegisterFragment : Fragment() {
                         emailTxtLay.error = ""
                     }
                     else{
-                        emailTxtLay.error = getString(R.string.emailNotInvalid)
+                        emailTxtLay.error = getString(R.string.emailNotValid)
                     }
                 }
 
@@ -125,7 +125,7 @@ class RegisterFragment : Fragment() {
                 is NetworkRequest.Success -> {
                     response.data?.let { data ->
                         viewModel.saveData(data.username.toString(), data.hash.toString())
-                        findNavController().popBackStack(R.id.registerFragment, true)
+                        //findNavController().popBackStack(R.id.registerFragment, true)
                         findNavController().navigate(R.id.action_registerFragment_to_recipeFragment)
                     }
                 }
